@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{74212760-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HR.LeaveManagement.Domain", "src\Core\HR.LeaveManagement.Domain\HR.LeaveManagement.Domain.csproj", "{AD93DF81-72F9-4E45-A610-041E220D4D6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HR.LeaveManagement.Application", "src\Core\HR.LeaveManagement.Application\HR.LeaveManagement.Application.csproj", "{1FE0E20F-63FB-43ED-A3BC-BD272DFC4FED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +24,14 @@ Global
 		{AD93DF81-72F9-4E45-A610-041E220D4D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD93DF81-72F9-4E45-A610-041E220D4D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD93DF81-72F9-4E45-A610-041E220D4D6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE0E20F-63FB-43ED-A3BC-BD272DFC4FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE0E20F-63FB-43ED-A3BC-BD272DFC4FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE0E20F-63FB-43ED-A3BC-BD272DFC4FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE0E20F-63FB-43ED-A3BC-BD272DFC4FED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{74212760-BAF1-48C5-BB6F-CDD8AFD1FB9E} = {C991588B-8E9A-44BA-A6B2-436DAA27F369}
 		{AD93DF81-72F9-4E45-A610-041E220D4D6F} = {74212760-BAF1-48C5-BB6F-CDD8AFD1FB9E}
+		{1FE0E20F-63FB-43ED-A3BC-BD272DFC4FED} = {74212760-BAF1-48C5-BB6F-CDD8AFD1FB9E}
 	EndGlobalSection
 EndGlobal
