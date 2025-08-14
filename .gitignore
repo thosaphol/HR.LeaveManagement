@@ -1,0 +1,76 @@
+# .NET build artifacts
+bin/
+obj/
+out/
+
+# .NET build artifacts for Domain projects
+**/bin/
+**/obj/
+**/out/
+
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Build results
+*.dll
+*.exe
+*.app
+*.log
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Publish output
+publish/
+*.pubxml
+*.publishproj
+
+# Entity Framework migrations
+Migrations/
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Others
+*.vspscc
+*.vssscc
+_ReSharper.*
+*.resharper
+*.DotSettings.user
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# DotCover
+*.dotCover
+
+# Local history for Visual Studio
+.localhistory/
+
+# Backup & crash reports
+*.bak
+*.swp
+*.tmp
+
+# Node modules (if using frontend)
+node_modules/
