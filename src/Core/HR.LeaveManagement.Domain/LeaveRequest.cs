@@ -13,7 +13,7 @@ namespace HR.LeaveManagement.Domain
         public DateTime EndDate { get; set; }
         public DateTime RequestedDate { get; set; }
         public string RequestComments { get; set; }
-        public DateTime ActionedDate { get; set; }
+        public DateTime? ActionedDate { get; set; }
         public bool? Approved { get; set; }
         public bool Cancelled { get; set; }
 

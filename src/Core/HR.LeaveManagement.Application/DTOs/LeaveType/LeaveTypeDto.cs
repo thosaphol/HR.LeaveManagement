@@ -7,7 +7,6 @@ namespace HR.LeaveManagement.Application.DTOs
     {
         public string Name { get; set; }
         public int DefaultDays { get; set; }
-        public bool IsActive { get; set; }
     }
 }
  
