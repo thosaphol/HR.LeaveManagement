@@ -10,5 +10,6 @@ namespace HR.LeaveManagement.Application.Persistance.Contracts
         Task<LeaveRequest> GetLeaveRequestWithDetails(int id);
         Task<List<LeaveRequest>> GetLeaveRequestsWithDetails();
         Task ChangeApprovalStatus(LeaveRequest leaveRequest, bool? approved);
+        Task<bool> Exist(int id);
     }
 }
