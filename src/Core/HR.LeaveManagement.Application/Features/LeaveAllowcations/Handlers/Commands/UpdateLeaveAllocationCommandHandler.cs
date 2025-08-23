@@ -8,6 +8,8 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllowcations.Handlers.Com
     using System.Threading;
     using System.Threading.Tasks;
     using HR.LeaveManagement.Application.Persistance.Contracts;
+    using HR.LeaveManagement.Application.DTOs.LeaveAllocation.Validators;
+    using FluentValidation;
 
     public class UpdateLeaveAllocationCommandHandler : IRequestHandler<UpdateLeaveAllocationCommand, Unit>
     {
@@ -22,10 +24,21 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllowcations.Handlers.Com
 
         public async Task<Unit> Handle(UpdateLeaveAllocationCommand request, CancellationToken cancellationToken)
         {
+            await ValidateRequest(request);
             var leaveAllocation = await _leaveAllocationRepository.Get(request.LeaveAllocationDto.Id);
             _mapper.Map(request, leaveAllocation);
             await _leaveAllocationRepository.Update(leaveAllocation);
             return Unit.Value;
+        }
+
+        private async Task ValidateRequest(UpdateLeaveAllocationCommand request)
+        {
+            var validator = new UpdateLeaveAllocationDtoValidator(_leaveAllocationRepository);
+            var validationResult = await validator.ValidateAsync(request.LeaveAllocationDto);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
+            }
         }
     }
 }

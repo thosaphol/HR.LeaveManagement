@@ -3,6 +3,9 @@ using System;
 namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
 {
     using AutoMapper;
+    using HR.LeaveManagement.Application.DTOs.LeaveRequest;
+    using HR.LeaveManagement.Application.DTOs.LeaveRequest.Validators;
+    using HR.LeaveManagement.Application.Exceptions;
     using HR.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
     using HR.LeaveManagement.Application.Persistance.Contracts;
     using MediatR;
@@ -22,6 +25,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
 
         public async Task<Unit> Handle(UpdateLeaveRequestCommand request, CancellationToken cancellationToken)
         {
+            await ValidateRequest(request);
             var leaveRequest = await _leaveRequestRepository.Get(request.Id);
             if (request.LeaveRequestDto != null)
             {
@@ -37,6 +41,16 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
             }
 
             return Unit.Value;
+        }
+
+        private async Task ValidateRequest(UpdateLeaveRequestCommand request)
+        {
+            var validator = new UpdateLeaveRequestDtoValidator(_leaveRequestRepository);
+            var validationResult = await validator.ValidateAsync(request.LeaveRequestDto);
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult);
+            }
         }
     }
 }

@@ -3,8 +3,10 @@ using System;
 namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
 {
     using AutoMapper;
+    using HR.LeaveManagement.Application.Exceptions;
     using HR.LeaveManagement.Application.Features.LeaveTypes.Requests.Commande;
     using HR.LeaveManagement.Application.Persistance.Contracts;
+    using HR.LeaveManagement.Domain;
     using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
@@ -23,14 +25,17 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
         public async Task<Unit> Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
         {
             var leaveType = await _leaveTypeRepository.Get(request.Id);
-            if (leaveType == null)
-            {
-                // Optionally throw NotFoundException or handle as needed
-                return Unit.Value;
-            }
+            ValidateLeaveType(leaveType, request.Id);
 
             await _leaveTypeRepository.Delete(leaveType);
             return Unit.Value;
+        }
+
+        private void ValidateLeaveType(LeaveType leaveType,int id)
+        {
+            if (leaveType == null) {
+                throw new NotFoundException(nameof(LeaveType), id);
+            }
         }
     }
 }

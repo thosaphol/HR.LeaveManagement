@@ -1,13 +1,14 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using HR.LeaveManagement.Application.Exceptions;
 using HR.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
 using HR.LeaveManagement.Application.Persistance.Contracts;
 using MediatR;
 
 namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
 {
-    public class DeleteLeaveRequestCommandHandler:IRequestHandler<DeleteLeaveRequestCommand>
+    public class DeleteLeaveRequestCommandHandler : IRequestHandler<DeleteLeaveRequestCommand>
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
 
@@ -19,13 +20,16 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command
         public async Task<Unit> Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
         {
             var leaveRequest = await _leaveRequestRepository.Get(request.Id);
-            if (leaveRequest == null)
-            {
-                return Unit.Value;
-            }
+            ValidateLeaveRequest(leaveRequest, request.Id);
 
             await _leaveRequestRepository.Delete(leaveRequest);
             return Unit.Value;
+        }
+        private void ValidateLeaveRequest(Domain.LeaveRequest leaveType,int id)
+        {
+            if (leaveType == null) {
+                throw new NotFoundException(nameof(Domain.LeaveRequest), id);
+            }
         }
     }
 }
