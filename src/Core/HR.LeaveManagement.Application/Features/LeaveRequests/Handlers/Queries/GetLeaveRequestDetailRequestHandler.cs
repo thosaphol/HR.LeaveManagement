@@ -4,12 +4,12 @@ namespace HR.LeaveManagement.Application.Features.LeaveRequest.Handlers.Queries
 {
     using MediatR;
     using AutoMapper;
-    using HR.LeaveManagement.Application.Persistance.Contracts;
     using System.Threading.Tasks;
     using HR.LeaveManagement.Application.DTOs;
     using System.Threading;
     using HR.LeaveManagement.Application.Features.LeaveRequest.Requests.Queries;
     using HR.LeaveManagement.Application.DTOs.LeaveRequest;
+    using HR.LeaveManagement.Application.Contracts.Persistance;
 
     public class GetLeaveRequestDetailRequestHandler : IRequestHandler<GetLeaveRequestDetailRequest, LeaveRequestDto>
     {

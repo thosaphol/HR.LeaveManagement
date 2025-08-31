@@ -1,20 +1,20 @@
 using System;
-
-namespace HR.LeaveManagement.Application.Features.LeaveAllowcations.Handlers.Commands
-{
-    using MediatR;
+using MediatR;
     using HR.LeaveManagement.Application.Features.LeaveAllowcations.Requests.Commands;
     using AutoMapper;
 
     using HR.LeaveManagement.Domain;
-    using HR.LeaveManagement.Application.Persistance.Contracts;
     using System.Threading.Tasks;
     using System.Threading;
     using HR.LeaveManagement.Application.DTOs.LeaveAllocation.Validators;
     using FluentValidation;
     using FluentValidation.Results;
     using HR.LeaveManagement.Application.Responses;
+using HR.LeaveManagement.Application.Contracts.Persistance;
 
+namespace HR.LeaveManagement.Application.Features.LeaveAllowcations.Handlers.Commands
+{
+    
     public class CreateLeaveAllocationCommandHandler : IRequestHandler<CreateLeaveAllocationCommand, BaseCommandResponse>
     {
         private readonly ILeaveAllocationRepository _leaveAllocationRepository;

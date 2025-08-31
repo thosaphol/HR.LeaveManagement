@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using HR.LeaveManagement.Application.Contracts.Persistance;
 using HR.LeaveManagement.Application.Exceptions;
 using HR.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
-using HR.LeaveManagement.Application.Persistance.Contracts;
 using MediatR;
 
 namespace HR.LeaveManagement.Application.Features.LeaveRequests.Handlers.Command

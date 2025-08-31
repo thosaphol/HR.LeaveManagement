@@ -3,9 +3,9 @@ using System;
 namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
 {
     using AutoMapper;
+    using HR.LeaveManagement.Application.Contracts.Persistance;
     using HR.LeaveManagement.Application.Exceptions;
     using HR.LeaveManagement.Application.Features.LeaveTypes.Requests.Commande;
-    using HR.LeaveManagement.Application.Persistance.Contracts;
     using HR.LeaveManagement.Domain;
     using MediatR;
     using System.Threading;

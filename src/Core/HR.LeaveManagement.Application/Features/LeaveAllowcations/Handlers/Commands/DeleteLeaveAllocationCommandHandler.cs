@@ -6,9 +6,10 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllowcations.Handlers.Com
     using System.Threading;
     using System.Threading.Tasks;
     using HR.LeaveManagement.Application.Features.LeaveAllowcations.Requests.Commands;
-    using HR.LeaveManagement.Application.Persistance.Contracts;
+
     using AutoMapper;
     using HR.LeaveManagement.Application.Exceptions;
+    using HR.LeaveManagement.Application.Contracts.Persistance;
 
     public class DeleteLeaveAllocationCommandHandler : IRequestHandler<DeleteLeaveAllocationCommand>
     {

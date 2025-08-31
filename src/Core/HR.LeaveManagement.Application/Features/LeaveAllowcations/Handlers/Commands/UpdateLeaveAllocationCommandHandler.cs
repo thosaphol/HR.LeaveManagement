@@ -1,15 +1,15 @@
 using System;
-
+using MediatR;
+using AutoMapper;
+using HR.LeaveManagement.Application.Features.LeaveAllowcations.Requests.Commands;
+using System.Threading;
+using System.Threading.Tasks;
+using HR.LeaveManagement.Application.DTOs.LeaveAllocation.Validators;
+using FluentValidation;
+using HR.LeaveManagement.Application.Contracts.Persistance;
 namespace HR.LeaveManagement.Application.Features.LeaveAllowcations.Handlers.Commands
 {
-    using MediatR;
-    using AutoMapper;
-    using HR.LeaveManagement.Application.Features.LeaveAllowcations.Requests.Commands;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using HR.LeaveManagement.Application.Persistance.Contracts;
-    using HR.LeaveManagement.Application.DTOs.LeaveAllocation.Validators;
-    using FluentValidation;
+
 
     public class UpdateLeaveAllocationCommandHandler : IRequestHandler<UpdateLeaveAllocationCommand, Unit>
     {

@@ -5,12 +5,12 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
     using MediatR;
     using AutoMapper;
     using HR.LeaveManagement.Domain;
-    using HR.LeaveManagement.Application.Persistance.Contracts;
     using System.Threading;
     using HR.LeaveManagement.Application.Features.LeaveTypes.Requests.Commande;
     using System.Threading.Tasks;
     using HR.LeaveManagement.Application.DTOs.LeaveType.Validators;
     using HR.LeaveManagement.Application.Exceptions;
+    using HR.LeaveManagement.Application.Contracts.Persistance;
 
     public class UpdateLeaveTypeCommandHandler : IRequestHandler<UpdateLeaveTypeCommand, Unit>
     {

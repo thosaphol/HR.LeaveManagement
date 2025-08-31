@@ -1,5 +1,5 @@
 using System;
-using HR.LeaveManagement.Application.Persistance.Contracts;
+using HR.LeaveManagement.Application.Contracts.Persistance;
 using HR.LeaveManagement.Domain;
 
 namespace HR.LeaveManagement.Persistence.Repositories
