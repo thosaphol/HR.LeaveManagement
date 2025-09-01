@@ -1,10 +1,13 @@
 
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using HR.LeaveManagement.Domain;
 using HR.LeaveManagement.Domain.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace HR.LeaveManagement.Persistence
 {
@@ -35,7 +38,7 @@ namespace HR.LeaveManagement.Persistence
             }
             return base.SaveChangesAsync(cancellationToken);
         }
-        
+
         public DbSet<LeaveType> LeaveTypes { get; set; }
         public DbSet<LeaveAllocation> LeaveAllocations { get; set; }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
