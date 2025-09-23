@@ -40,7 +40,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
             }
             var leaveType = _mapper.Map<LeaveType>(request.LeaveTypeDto);
 
-            await _leaveTypeRepository.Add(leaveType);
+            leaveType = await _leaveTypeRepository.Add(leaveType);
             // return leaveType.Id;
             return new BaseCommandResponse
             {

@@ -1,5 +1,6 @@
 using HR.LeaveManagement.Application.DTOs;
 using HR.LeaveManagement.Application.DTOs.LeaveType;
+using HR.LeaveManagement.Application.Exceptions;
 using HR.LeaveManagement.Application.Features.LeaveRequest.Requests.Queries;
 using HR.LeaveManagement.Application.Features.LeaveTypes.Requests.Commande;
 using MediatR;
@@ -48,16 +49,35 @@ namespace HR.LeaveManagement.API.Controllers
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Put([FromBody] LeaveTypeDto leaveType)
         {
 
-
-            await _mediator.Send(new UpdateLeaveTypeCommand { LeaveTypeDto = leaveType });
-            return NoContent();
+            try
+            {
+                await _mediator.Send(new UpdateLeaveTypeCommand { LeaveTypeDto = leaveType });
+                return NoContent();
+            }
+            catch (ValidationException ex)
+            {
+                // _logger.LogError(ex, "Validation error in Put method of LeaveTypesController");
+                return BadRequest(ex.Errors);
+            }
+            catch (NotFoundException ex)
+            {
+                // _logger.LogError(ex, "Not found error in Put method of LeaveTypesController");
+                return NotFound(ex.Message);
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in Put method of LeaveTypesController");
+                throw;
+            }
+            
         }
 
         [HttpDelete("{id}")]

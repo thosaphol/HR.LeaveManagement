@@ -27,7 +27,11 @@ namespace HR.LeaveManagement.Application.Features.LeaveTypes.Handlers.Commands
         {
             await ValidateRequest(request);
             var leaveType = await _leaveTypeRepository.Get(request.LeaveTypeDto.Id);
-            _mapper.Map(request, leaveType);
+            if (leaveType == null)
+            {
+                throw new NotFoundException(nameof(LeaveType), request.LeaveTypeDto.Id);
+            }
+            _mapper.Map(request.LeaveTypeDto, leaveType);
             await _leaveTypeRepository.Update(leaveType);
             return Unit.Value;
         }
