@@ -4,6 +4,7 @@ using HR.LeaveManagement.Application.Exceptions;
 using HR.LeaveManagement.Application.Features.LeaveRequest.Requests.Queries;
 using HR.LeaveManagement.Application.Features.LeaveTypes.Requests.Commande;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace HR.LeaveManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeaveTypesController : ControllerBase
     {
         private readonly ILogger<LeaveTypesController> _logger;
@@ -70,14 +72,14 @@ namespace HR.LeaveManagement.API.Controllers
             {
                 // _logger.LogError(ex, "Not found error in Put method of LeaveTypesController");
                 return NotFound(ex.Message);
-                
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in Put method of LeaveTypesController");
                 throw;
             }
-            
+
         }
 
         [HttpDelete("{id}")]

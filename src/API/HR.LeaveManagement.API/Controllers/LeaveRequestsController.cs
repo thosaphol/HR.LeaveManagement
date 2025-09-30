@@ -2,6 +2,7 @@ using HR.LeaveManagement.Application.DTOs.LeaveRequest;
 using HR.LeaveManagement.Application.Features.LeaveRequest.Requests.Queries;
 using HR.LeaveManagement.Application.Features.LeaveRequests.Requests.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace HR.LeaveManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeaveRequestsController : ControllerBase
     {
         private readonly ILogger<LeaveRequestsController> _logger;
