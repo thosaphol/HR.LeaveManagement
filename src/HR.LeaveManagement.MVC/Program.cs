@@ -2,15 +2,35 @@ using System.Reflection;
 using HR.LeaveManagement.MVC.Contracts;
 using HR.LeaveManagement.MVC.Services;
 using HR.LeaveManagement.MVC.Services.Base;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5111/"));
+builder.Services.AddHttpContextAccessor();
+
+            
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/users/login");
+    });
+
+builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
+
+builder.Services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5111"));
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 builder.Services.AddScoped<ILeaveTypeService, LeaveTypeService>();
 builder.Services.AddScoped<ILeaveAllocationService, LeaveAllocationService>();
-// builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
+builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
+
 builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
 builder.Services.AddControllersWithViews();
 

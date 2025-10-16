@@ -12,7 +12,7 @@ namespace HR.LeaveManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class LeaveTypesController : ControllerBase
     {
         private readonly ILogger<LeaveTypesController> _logger;

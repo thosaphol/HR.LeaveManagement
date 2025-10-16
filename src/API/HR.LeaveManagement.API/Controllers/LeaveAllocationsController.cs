@@ -11,7 +11,7 @@ namespace HR.LeaveManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class LeaveAllocationsController : ControllerBase
     {
 
