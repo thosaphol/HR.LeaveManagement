@@ -10,7 +10,9 @@ namespace HR.LeaveManagement.Domain
         public int LeaveTypeId { get; set; }
         public LeaveType LeaveType { get; set; }
         public int NumberOfDays { get; set; }
-        public int Preiod { get; set; }
+        public int Period { get; set; }
+
+        public string EmployeeId { get; set; }
 
         // Additional properties or methods can be added here as needed
     }
